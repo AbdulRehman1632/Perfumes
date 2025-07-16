@@ -1,3 +1,4 @@
+import { Box, Button, Typography } from '@mui/material';
 import React from 'react'
 // import AdminLogin from '../../Components/Admin/AdminLogin/AdminLogin'
 import { useNavigate } from 'react-router';
@@ -11,10 +12,10 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div>
-      <h1>Welcome Admin</h1>
-      <button onClick={handleLogout}>Logout</button>
-    </div>
+    <Box sx={{display:"flex",alignItems:"center",justifyContent:"center"}}>
+      <Typography variant='h4'>Welcome Admin</Typography>
+      <Button variant='contained' color='error' onClick={handleLogout}>Logout</Button>
+    </Box>
   );
 };
 
