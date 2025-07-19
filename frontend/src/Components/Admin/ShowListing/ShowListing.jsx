@@ -6,6 +6,7 @@ import {
   Button,
   Avatar,
   Modal,
+  Pagination,
 } from '@mui/material';
 import { GetReq } from '../../../api/axios';
 import AdminEditListingModal from '../../../utils/constant/AdminEditListingModal/AdminEditListingModal';
@@ -25,6 +26,19 @@ const ShowListing = () => {
 const [deleteTarget, setDeleteTarget] = useState(null);
 const [search, setSearch] = useState('');
 const [filtered, setFiltered] = useState([]);
+
+const [currentPage, setCurrentPage] = useState(1);
+const listingsPerPage = 8;
+
+const indexOfLast = currentPage * listingsPerPage;
+const indexOfFirst = indexOfLast - listingsPerPage;
+const currentListings = filtered.slice(indexOfFirst, indexOfLast);
+const totalPages = Math.ceil(filtered.length / listingsPerPage);
+
+const handlePageChange = (page) => {
+  setCurrentPage(page);
+};
+
 
 const { enqueueSnackbar } = useSnackbar();
 
@@ -130,7 +144,7 @@ const handleExport = () => {
 </Box>
 
 
-      {listings.map((perfume, index) => (
+      {filtered.map((perfume, index) => (
        <Box
   key={index}
   display="flex"
@@ -245,6 +259,22 @@ const handleExport = () => {
         onUpdated={fetchListings}
       />
     </Paper>
+
+    <Box display="flex" justifyContent="center" mt={4}>
+  <Pagination
+    count={totalPages}
+    page={currentPage}
+    onChange={(e, page) => handlePageChange(page)}
+    color="primary"
+    sx={{
+      '& .MuiPaginationItem-root': {
+        color: 'white',
+        borderColor: 'white',
+      },
+    }}
+  />
+</Box>
+
     </>
   );
 };

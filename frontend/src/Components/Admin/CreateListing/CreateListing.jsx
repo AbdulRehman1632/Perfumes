@@ -19,6 +19,7 @@ const CreateListing = () => {
     PerfumeDescription: '',
     PerfumePrice: '',
     PerfumeBottleML: '',
+    PerfumeDetail: '',
   });
 
   const [images, setImages] = useState({
@@ -50,6 +51,7 @@ const CreateListing = () => {
       !formData.PerfumeDescription ||
       !formData.PerfumePrice ||
       !formData.PerfumeBottleML ||
+      !formData.PerfumeDetail ||
       !images.mainImage ||
       !images.otherImage
     ) {
@@ -68,15 +70,38 @@ const CreateListing = () => {
     payload.append('images', images.otherImage);
 
     try {
-      const res = await PostReq('/Listing/add', payload, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
-      console.log('Success:', res.data);
-      enqueueSnackbar('Perfume listed successfully!', { variant: 'success' }); // ✅ success message
-    } catch (err) {
-      console.error('Error:', err);
-      enqueueSnackbar('Something went wrong!', { variant: 'error' }); // ✅ error message
-    }
+  const res = await PostReq('/Listing/add', payload, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+
+  console.log('Success:', res.data);
+  enqueueSnackbar('Perfume listed successfully!', { variant: 'success' });
+
+  // ✅ Reset form fields after successful submission
+  setFormData({
+    PerfumeTitle: '',
+    PerfumeCategory: '',
+    PerfumeDescription: '',
+    PerfumePrice: '',
+    PerfumeBottleML: '',
+    PerfumeDetail:'',
+  });
+
+  setImages({
+    mainImage: null,
+    otherImage: null,
+  });
+
+  setImageNames({
+    mainImage: '',
+    otherImage: '',
+  });
+
+} catch (err) {
+  console.error('Error:', err);
+  enqueueSnackbar('Something went wrong!', { variant: 'error' });
+}
+
   };
 
   return (
@@ -137,6 +162,20 @@ const CreateListing = () => {
               name="PerfumeDescription"
               label="Perfume Description"
               value={formData.PerfumeDescription}
+              onChange={handleChange}
+              multiline
+              rows={3}
+              required
+            />
+          </Grid>
+
+
+            <Grid width="98%" item xs={12}>
+            <TextField
+              fullWidth
+              name="PerfumeDetail"
+              label="Perfume Detail"
+              value={formData.PerfumeDetail}
               onChange={handleChange}
               multiline
               rows={3}

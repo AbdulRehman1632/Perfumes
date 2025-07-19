@@ -131,6 +131,18 @@ const AdminEditListingModal = ({ open, handleClose, data, onUpdated }) => {
               onChange={handleChange}
             />
           </Grid>
+          
+          <Grid width="100%" item xs={12}>
+            <TextField
+              fullWidth
+              multiline
+              rows={3}
+              label="Perfume Detail"
+              name="PerfumeDetail"
+              value={formData.PerfumeDetail || ''}
+              onChange={handleChange}
+            />
+          </Grid>
 
           {/* Main Image Upload */}
           <Grid item xs={12}>

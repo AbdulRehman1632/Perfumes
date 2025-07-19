@@ -2,6 +2,7 @@ import AdminLogin from "../src/Components/Admin/AdminLogin/AdminLogin";
 import CreateListing from "../src/Components/Admin/CreateListing/CreateListing";
 import ManageOrder from "../src/Components/Admin/ManageOrders/ManageORder";
 import ShowListing from "../src/Components/Admin/ShowListing/ShowListing";
+import ProductDetailPage from "../src/Components/HomeComponents/ProductDetailPage/ProductDetailPage";
 import DashboardLayoutNavigationLinks from "../src/layout/DashboardLayoutNaviagtionLinks/DashboardLayoutNaviagtionLinks";
 import AdminDashboard from "../src/Pages/AdminDashboard/AdminDashboard";
 import Home from "../src/Pages/Home/Home";
@@ -26,6 +27,11 @@ export const routes = [
      {
         element:<Products/>,
         path:"/products"
+
+    },
+    {
+        element:<ProductDetailPage/>,
+        path:"/products/:id"
 
     },
      {
