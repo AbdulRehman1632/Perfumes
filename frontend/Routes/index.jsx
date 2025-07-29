@@ -2,6 +2,7 @@ import AdminLogin from "../src/Components/Admin/AdminLogin/AdminLogin";
 import CreateListing from "../src/Components/Admin/CreateListing/CreateListing";
 import ManageOrder from "../src/Components/Admin/ManageOrders/ManageORder";
 import ShowListing from "../src/Components/Admin/ShowListing/ShowListing";
+import Checkout from "../src/Components/Checkout/Checkout";
 import ProductDetailPage from "../src/Components/HomeComponents/ProductDetailPage/ProductDetailPage";
 import DashboardLayoutNavigationLinks from "../src/layout/DashboardLayoutNaviagtionLinks/DashboardLayoutNaviagtionLinks";
 import AdminDashboard from "../src/Pages/AdminDashboard/AdminDashboard";
@@ -27,6 +28,11 @@ export const routes = [
      {
         element:<Products/>,
         path:"/products"
+
+    },
+    {
+        element:<Checkout/>,
+        path:"/checkout"
 
     },
     {

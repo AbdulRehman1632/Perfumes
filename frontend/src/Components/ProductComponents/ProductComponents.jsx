@@ -111,21 +111,34 @@ const ProductComponents = () => {
         </ToggleButtonGroup>
 
         {/* Price Sort */}
-        <FormControl sx={{ minWidth: 150 }}>
-          <InputLabel sx={{ color: 'white' }}>Sort by Price</InputLabel>
-          <Select
-            value={priceSort}
-            onChange={handleSortChange}
-            sx={{
-              color: 'white',
-              '& .MuiOutlinedInput-notchedOutline': {
-                borderColor: 'white',
-              },
-              '&:hover .MuiOutlinedInput-notchedOutline': {
-                borderColor: 'white',
-              },
-            }}
-          >
+       <FormControl sx={{ minWidth: 150 }}>
+  <InputLabel sx={{ color: 'white' }}>Sort by Price</InputLabel>
+  <Select
+    value={priceSort}
+    onChange={handleSortChange}
+    label="Sort by Price"
+    sx={{
+      backgroundColor: 'black',   // 👈 Background black
+      color: 'white',             // 👈 Text white
+      '& .MuiOutlinedInput-notchedOutline': {
+        borderColor: 'white',     // 👈 Border white
+      },
+      '&:hover .MuiOutlinedInput-notchedOutline': {
+        borderColor: 'white',
+      },
+      '& .MuiSvgIcon-root': {
+        color: 'white',           // 👈 Dropdown arrow white
+      },
+    }}
+    MenuProps={{
+      PaperProps: {
+        sx: {
+          backgroundColor: 'black', // 👈 Dropdown menu background black
+          color: 'white',           // 👈 Dropdown item text white
+        },
+      },
+    }}
+  >
             <MenuItem value="">None</MenuItem>
             <MenuItem value="low">Low to High</MenuItem>
             <MenuItem value="high">High to Low</MenuItem>

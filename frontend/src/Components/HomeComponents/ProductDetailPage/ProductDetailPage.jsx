@@ -4,7 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 // import { fetchProducts } from '../redux/productsSlice'; // Adjust path as needed
 import {
   Box, Typography, Button, IconButton, Grid, Stack, Divider, CircularProgress,
-  Pagination
+  Pagination,
+  Snackbar,
+  Alert
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -13,11 +15,13 @@ import { fetchProducts } from '../../../utils/constant/Redux/Slice/productSlice'
 import Rating from '@mui/material/Rating';
 import { GetReq } from '../../../api/axios'; // your API helper
 import ReviewModal from '../../../utils/constant/ReviewModal/ReviewModal';
+import { addToCart } from '../../../utils/constant/Redux/Slice/cartslice';
 
 const ProductDetailPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { data: products, loading } = useSelector((state) => state.products);
+  
 
   const [product, setProduct] = useState(null);
   const [selectedImage, setSelectedImage] = useState('');
@@ -34,6 +38,23 @@ const [openReviewModal, setOpenReviewModal] = useState(false);
   const startIndex = (page - 1) * cardsPerPage;
   const paginatedReviews = reviews.slice(startIndex, startIndex + cardsPerPage);
   const pageCount = Math.ceil(reviews.length / cardsPerPage);
+
+
+
+   const [openSnackbar, setOpenSnackbar] = useState(false);
+
+  const handleAddToCart = () => {
+    dispatch(addToCart({
+      _id: product._id,
+      name: product.PerfumeTitle,
+      price: product.PerfumePrice,
+      image: selectedImage,
+      quantity,
+    }));
+
+    setOpenSnackbar(true);
+  };
+
 
   const handlePageChange = (event, value) => {
     setPage(value);
@@ -158,9 +179,32 @@ useEffect(() => {
               sx={{ color: 'white', border: '1px solid gray' }}><AddIcon /></IconButton>
           </Stack>
 
-          <Button variant="contained" size="large" sx={{
-            backgroundColor:"var(--theme-color)"
-          }}>Add to Cart</Button>
+           <>
+      <Button
+        variant="contained"
+        size="large"
+        sx={{ backgroundColor: "var(--theme-color)" }}
+        onClick={handleAddToCart}
+      >
+        Add to Cart
+      </Button>
+
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={3000}
+        onClose={() => setOpenSnackbar(false)}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert
+          onClose={() => setOpenSnackbar(false)}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          Product added to cart!
+        </Alert>
+      </Snackbar>
+    </>
+
         </Grid>
     
       </Grid>
@@ -363,10 +407,6 @@ useEffect(() => {
   onSuccess={fetchReviews}
   productId={product._id}
 />
-
-
-
-
     </Box>
   );
 };

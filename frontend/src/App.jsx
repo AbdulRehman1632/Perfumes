@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Routes, BrowserRouter as Router, useLocation } from 'react-router-dom';
 import { routes } from '../Routes';
 import CustomNav from './Components/CustomNav/CustomNav';
+import CustomFooter from './Components/CustomFooter/CustomFooter';
 
 const AppRoutes = () => {
   const location = useLocation();
@@ -25,6 +26,7 @@ const AppRoutes = () => {
           <Route key={index} path={items.path} element={items.element} />
         ))}
       </Routes>
+      <CustomFooter/>
     </>
   );
 };
