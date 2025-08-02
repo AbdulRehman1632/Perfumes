@@ -153,7 +153,7 @@ useEffect(() => {
         </Grid>
 
         {/* Detail Section */}
-        <Grid  item xs={12} md={6} sx={{ py: { xs: 0, md: 5 } ,width:{xs:"100%",md:"45%"} }}>
+        <Grid  item xs={12} md={6} sx={{ py: { xs: 0, md: 5 } ,width:{xs:"100%",md:"37%"} }}>
           <Typography sx={{
             textTransform: 'uppercase',color:"var(--theme-color)"
           }} variant="h3" fontWeight="bold" gutterBottom>

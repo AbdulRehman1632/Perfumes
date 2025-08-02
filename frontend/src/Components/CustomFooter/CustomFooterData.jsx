@@ -16,9 +16,9 @@ export const footerData = [
     links: [
       { label: "Home", path: "/" },
       { label: "Products", path: "/products" },
-      { label: "About Us", path: "/aboutUs" },
+      { label: "About Us", path: "/about" },
       { label: "Services", path: "/services" },
-      { label: "Contact Us", path: "/contact us" },
+      { label: "Contact Us", path: "/contact" },
   
     ],
   },

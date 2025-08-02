@@ -3,6 +3,7 @@ import { Route, Routes, BrowserRouter as Router, useLocation } from 'react-route
 import { routes } from '../Routes';
 import CustomNav from './Components/CustomNav/CustomNav';
 import CustomFooter from './Components/CustomFooter/CustomFooter';
+import ScrollToTop from './utils/constant/ScrollToTop/ScrollToTop';
 
 const AppRoutes = () => {
   const location = useLocation();
@@ -13,6 +14,7 @@ const AppRoutes = () => {
     '/admin/createListing',
     '/admin/manageOrders',
     '/admin/showListing',
+    '/admin/offers',
   ];
 
   // Check if current path starts with "/admin" but is not just "/admin" (login)
@@ -26,7 +28,7 @@ const AppRoutes = () => {
           <Route key={index} path={items.path} element={items.element} />
         ))}
       </Routes>
-      <CustomFooter/>
+       {!shouldHideNav && <CustomFooter/>}
     </>
   );
 };
@@ -34,7 +36,8 @@ const AppRoutes = () => {
 const App = () => {
   return (
     <Router>
-      <AppRoutes />
+      <ScrollToTop/>
+      <AppRoutes/>
     </Router>
   );
 };

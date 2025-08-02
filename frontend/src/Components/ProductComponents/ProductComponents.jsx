@@ -18,6 +18,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '../../utils/constant/Redux/Slice/productSlice';
 import { useNavigate } from 'react-router';
+import ParticlesBackground from '../../utils/constant/ParticlesBackground/ParticlesBackground';
 
 const ProductComponents = () => {
   const dispatch = useDispatch();
@@ -70,6 +71,11 @@ const ProductComponents = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
+    <>
+
+    <ParticlesBackground/>
+
+
     <Box p={3}>
       {/* Heading */}
       <Typography color='var(--theme-color)' variant="h4" textAlign="center" fontWeight="bold" mb={3}>
@@ -215,6 +221,7 @@ const ProductComponents = () => {
         </Box>
       )}
     </Box>
+    </>
   );
 };
 

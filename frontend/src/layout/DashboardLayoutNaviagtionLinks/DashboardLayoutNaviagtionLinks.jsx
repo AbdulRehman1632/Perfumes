@@ -104,6 +104,12 @@ function DashboardLayoutNavigationLinks({ children, window }) {
             title: 'Manage Orders',
             icon: <InsertDriveFileIcon />,
             onClick: () => handleNavClick('manageOrders'),
+          },
+          {
+            segment: 'admin/offers',
+            title: 'Post Offers',
+            icon: <InsertDriveFileIcon />,
+            onClick: () => handleNavClick('offers'),
           }
          
         ]}
